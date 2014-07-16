@@ -1,0 +1,68 @@
+{% extends "/store/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    	{% if items %}
+      <legend>Apparel</legend>
+      <ul class="thumbnails list-unstyled">
+    	{% for item in items %}
+         <li class="col-3 col-sm-3 col-md-3" style="height: 450px;">
+         <div class="col-sm-offset-1">
+         <div style="height: 256px;" >
+            <div  style="width:190px;height:190px;display: block;border: 2px solid rgb(236, 231, 220); position: relative;overflow: hidden;">
+               <!-- <img src="{{item.image}}" alt="" class="img-responsive"  style="height: 370px;margin: -120px 0px -5px 0px;" /> -->
+               <img src="{{item.image}}" alt="" width="200px" height="301px"  style="height: 370px;margin: -120px 0px -5px 0px;" />
+               <!-- clip: shape(top, right, botton, left);-->
+            </div>
+            <div class="caption">
+                <h6 style="height:22px;">{{item.title}}</h6>
+                <p class="text-muted">${{item.price}}.00 </p> 
+					 </div>
+          </div>
+          <a href="/store/{{item.id}}/" class="btn btn-primary btn-block">
+							Get Item &raquo;
+					</a>
+          </div>
+        </li>
+    	{% endfor %}
+      </ul>
+    	{% else %}
+      <div class="col-12 col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-5 col-sm-5 col-md-5">
+              <img src="{{profile.image}}" class="img-thumbnail">
+            </div>
+            <div class="col-7 col-sm-7 col-md-7">
+            <form method="POST" action="/add/{{pro.id}}" class="form-horizontal" role="form">
+              <h3> {{profile.title}} </h3> 
+              <h4> ${{profile.price}}.00 </h4>
+              <br>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" ><h4>Overview: </h4> </label>
+                <div class="col-sm-5">
+                <h4> {{profile.description}} </h4>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="size" class="col-sm-2 control-label" ><h4>Size:</h4></label>
+                <div class="col-sm-5">
+                <select id="size" class="btn btn-default" name="size">
+                  {% for option in options %}
+                    <option value="{{option}}"> {{option}} </option>
+                  {% endfor %} 
+                </select>
+              </div>
+              </div>
+              <div class="form-group"> 
+                <div class="col-sm-offset-2 col-sm-5">
+                  <button type="submit" class="btn btn-primary">Add to Cart &raquo;</button>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    	{% endif %}
+  </div>
+</div>
+{% endblock %}

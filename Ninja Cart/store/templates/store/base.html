@@ -1,0 +1,60 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <link href="/static/store/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/store/css/thumbnail-gallery.css" rel="stylesheet">
+    <link href='/static/store/css/bootstrap-responsive.min.css' rel="stylesheet">
+    <link src="/static/store/select/bootstrap-select/bootstrap-select.css" rel="stylesheet">
+    <script src="/static/store/select/bootstrap-select/bootstrap-select.js"></script>
+    <script src="/static/store/js/bootstrap.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <title>Ninja Kart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Ninja Kart</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'store:index' %}">Home</a></li>
+            <li><a href="{% url 'store:index' %}">Store</a></li>
+            <li><a href="{% url 'store:cart' %}">Cart</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    {% block header %} 
+    {% endblock %}
+    <div class="container">
+      <div class="jumbotron" style="border-radius: 3px;text-align: center;background-color: transparent;padding: 10px;padding-top: 48px;">
+      </div>
+    </div>
+    {% if messages %}
+    <div class="container"> 
+    <div class="col-md-offset-1 col-9 col-sm-9 col-md-9">
+      <div class="messages ">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+    </div></div>
+    {% endif %}
+    {% block content %} 
+    {% endblock %}
+  </body>
+</html>
